@@ -1,5 +1,7 @@
 
 .idea/
+target/
+*.iml
+
 /shelf/
 /workspace.xml
-target/
