@@ -203,7 +203,6 @@ public final class MCChess extends JavaPlugin implements Listener {
                                         } else {
                                             secW -= 1;
                                         }
-                                        //log.warning(minW + ":" + secW);
                                         updateClock();
                                     }
                                 }
@@ -234,7 +233,6 @@ public final class MCChess extends JavaPlugin implements Listener {
                                             secB -= 1;
                                         }
 
-                                        //log.warning(minB + ":" + secB);
                                         updateClock();
 
                                     }
@@ -346,23 +344,13 @@ public final class MCChess extends JavaPlugin implements Listener {
         int y = block.getY();
         int z = block.getZ();
 
-        log.info(name + " broke block at " + x + " " + y + " " + z);
-
         if (y <= -1 && y >= -25 && x <= 96 && x >= 0 && z <= 96 && z >= 0) {
-            //log.warning("block is in range");
             if (winner.equalsIgnoreCase("")) {
-                //log.warning("no winner");
                 int[] javaCoord = coordToJava(x, z);
-                //log.warning("javaCoord: " + javaCoord[0] + " " + javaCoord[1]);
 
                 if (name.equalsIgnoreCase(playerW) || name.equalsIgnoreCase(playerB)) {
-                    //log.warning("player is white or black");
                     if ((name.equalsIgnoreCase(playerW) && turn.equalsIgnoreCase("W")) || (name.equalsIgnoreCase(playerB) && turn.equalsIgnoreCase("B"))) {
-                        //log.warning("player is playing at their turn");
-                        //log.warning("selR: " + selR);
-                        //log.warning("selC: " + selC);
                         if (selR == -1) {
-                            //log.warning("nothing is selected");
                             if (board[javaCoord[0]][javaCoord[1]] != null && board[javaCoord[0]][javaCoord[1]].substring(0, 1).equalsIgnoreCase(turn)) {
                                 selR = javaCoord[0];
                                 selC = javaCoord[1];
@@ -371,26 +359,20 @@ public final class MCChess extends JavaPlugin implements Listener {
                                 p.sendMessage("You don't have a piece selected!");
                             }
                         } else {
-                            //log.warning("yes1");
                             if (selR == javaCoord[0] && selC == javaCoord[1]) { // it's a piece that's already selected
-                                //log.warning("yes2");
                                 selR = -1;
                                 selC = -1;
                                 p.sendMessage(ChatColor.AQUA + "Unselected " + board[javaCoord[0]][javaCoord[1]].substring(1) + " on " + coordToChess(x, z) + ".");
                             } else {
-                                //log.warning("yes3");
                                 makeMove(new int[]{selR, selC, javaCoord[0], javaCoord[1]}, p);
                                 selR = -1;
                                 selC = -1;
                             }
                         }
 
-                        // log.warning(javaCoord[0] + " " + javaCoord[1]);
                     } else {
                         p.sendMessage("It's not your turn!");
                     }
-                } else {
-                    //log.warning("bruh1");
                 }
             } else {
                 p.sendMessage("The game has ended. Enter /reset to start a new game.");
@@ -560,32 +542,19 @@ public final class MCChess extends JavaPlugin implements Listener {
     }
 
     public static boolean isE(String p) {
-        if (p == null)
-            return true;
-        else
-            return false;
+        return p == null;
     }
 
     public static boolean isW(String p) {
-        if (p != null && p.substring(0, 1).equals("W"))
-            return true;
-        else
-            return false;
+        return p != null && p.substring(0, 1).equals("W");
     }
 
     public static boolean isB(String p) {
-        if (p != null && p.substring(0, 1).equals("B"))
-            return true;
-        else
-            return false;
+        return p != null && p.substring(0, 1).equals("B");
     }
 
     private boolean inBoard(int r, int c) {
-        if (r >= 0 && r <= 7 && c >= 0 && c <= 7) {
-            return true;
-        } else {
-            return false;
-        }
+        return r >= 0 && r <= 7 && c >= 0 && c <= 7;
     }
 
     private void swapTurn() {
@@ -959,8 +928,6 @@ public final class MCChess extends JavaPlugin implements Listener {
                 tempBoard[sR][sC] = null;
                 tempBoard[poss.get(i)[0]][poss.get(i)[1]] = temp;
 
-                // log.warning("If " + temp + " moves to " + position(poss.get(i)[0], poss.get(i)[1]));
-
                 boolean checkFound = checkForCheck(tempBoard, oppTurn(scol)); // is the opponent checking you if you move here?
                 if (checkFound) {
                     poss.remove(i);
@@ -1167,8 +1134,6 @@ public final class MCChess extends JavaPlugin implements Listener {
         int[] c1 = getMCCoord(iR, iC);
         int[] c2 = getMCCoord(fR, fC);
 
-        //log.warning("clone " + c1[0] + " " + c1[1] + " " + c1[2] + " " + c1[3] + " " + c1[4] + " " + c1[5] + " " + c2[0] + " " + c2[1] + " " + c2[2] + " replace move");
-
         runCommand("clone " + c1[0] + " " + c1[1] + " " + c1[2] + " " + c1[3] + " " + c1[4] + " " + c1[5] + " " + c2[0] + " " + c2[1] + " " + c2[2] + " replace move");
     }
 
@@ -1210,8 +1175,6 @@ public final class MCChess extends JavaPlugin implements Listener {
                 case "BK": loc = "48 -50 36 59 -26 47"; break;
             }
         }
-
-        //log.warning("clone " + loc + " " + c1[0] + " " + c1[1] + " " + c1[2]);
 
         runCommand("clone " + loc + " " + c1[0] + " " + c1[1] + " " + c1[2]);
     }
@@ -1404,7 +1367,6 @@ public final class MCChess extends JavaPlugin implements Listener {
         if (winner.equalsIgnoreCase("")) { // no winner
             if (inc > 0) {
                 if (turn.equalsIgnoreCase("W")) {
-                    //log.warning(String.valueOf(secW + inc));
                     if (secW + inc > 59) {
                         minW += (secW + inc) / 60;
                         secW = (secW + inc) % 60;
@@ -1502,7 +1464,6 @@ public final class MCChess extends JavaPlugin implements Listener {
             case 8: coords = "-2 -50 92 2 -38 93"; break;
             case 9: coords = "94 -50 100 98 -38 100"; break;
         }
-        //log.warning("num" + num);
         runCommand("clone " + coords + " " + x + " " + y + " " + z);
     }
 
