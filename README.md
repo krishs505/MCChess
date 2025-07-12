@@ -15,6 +15,8 @@
 - **Fireworks Celebration**: A stunning fireworks show commences using a randomized algorithm at the conclusion of a game.
 - **Utility Commands**: Includes tools like `/fly` and `/speed` for enhanced gameplay.
 
+<img width="898" height="619" alt="Screenshot 2025-07-11 211727" src="https://github.com/user-attachments/assets/8dcabfe5-c071-4db4-a37c-87091dbcafa1" />
+
 ---
 
 ## ⌨️ Commands
