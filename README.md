@@ -1,6 +1,6 @@
 # MCChess
 
-**MCChess** is a Minecraft Bukkit plugin that brings the game of chess into the Minecraft world. Players can enjoy full-featured chess matches on an 8×8 board rendered with in-game blocks and interact with it using simple in-game actions and commands.
+**MCChess** is a Minecraft Spigot plugin that brings the game of chess into the Minecraft world. Players can enjoy full-featured chess matches on an 8×8 board rendered with in-game blocks and interact with it using simple in-game actions and commands.
 
 ---
 
